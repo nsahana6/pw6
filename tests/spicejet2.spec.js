@@ -1,0 +1,16 @@
+import{test}from "@playwright/test"
+test("spicejrt",async({page})=>{
+    await page.goto('https://www.spicejet.com/')
+    await page.getByTestId("round-trip-radio-button").click()
+    await page.getByTestId("to-testID-destination").getByRole("textbox").pressSequentially("BE")
+    await page.getByText('Departure Date').click()
+    await page.getByTestId("return-date-dropdown-label-test-id").click()
+    await page.locator('//div[@class="css-76zvg2 r-jwli3a r-ubezar r-16dba41" and text()="16"]').click()
+    await page.locator('//div[@class="css-76zvg2 r-cqee49 r-1enofrn r-1ozqkpa" and text()="Students"]').click()
+    await page.getByTestId("home-page-flight-cta").click()
+    await page.getByRole('img').locator('rect').click()
+    await page.locator('//div[@class="css-76zvg2 r-jwli3a r-n6v787 r-1kfrs79" and text()="Continue"]').waitFor({state:"visible"})
+    await page.locator('//div[@class="css-1dbjc4n r-1ap4h1l r-1ah4tor"]').click()
+    let a=await page.locator('//div[@class="css-76zvg2 r-1862ga2 r-n6v787"]').allTextContents()
+    console.log(a)
+})
